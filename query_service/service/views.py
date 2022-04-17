@@ -39,6 +39,8 @@ class BudgetHomeView(APIView):
             return Response('error')
 
 class SqftHomeView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         minSqft = request.GET.get('minSqft', 0)
 
@@ -59,6 +61,8 @@ class SqftHomeView(APIView):
             return Response('error')
 
 class AgeHomeView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     def get(self, request):
         year = request.GET.get('year', 0)
 
