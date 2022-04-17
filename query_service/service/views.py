@@ -54,3 +54,28 @@ class SqftHomeView(APIView):
             return Response(res.json())
         else:
             return Response('error')
+
+class AgeHomeView(APIView):
+    def get(self, request):
+        year = request.GET.get('year', 0)
+
+        res = requests.post(data_service_url + '/query_data', json={
+            "table": "home",
+            "OR": [
+                {
+                    "column_name": "yr_built",
+                    "operator": "gte",
+                    "value": year
+                },
+                {
+                    "column_name": "yr_renovated",
+                    "operator": "gte",
+                    "value": year
+                }
+            ]
+        })
+
+        if res.status_code == 200:
+            return Response(res.json())
+        else:
+            return Response('error')

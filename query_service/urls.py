@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from query_service.service.views import BudgetHomeView, SqftHomeView
+from query_service.service.views import BudgetHomeView, SqftHomeView, AgeHomeView
 
 router = DefaultRouter(trailing_slash=False)
 
@@ -24,5 +24,6 @@ router = DefaultRouter(trailing_slash=False)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("budget_homes", BudgetHomeView.as_view(), name='budget_home_view'),
-    path("sqft_homes", SqftHomeView.as_view(), name='sqft_homes')
+    path("sqft_homes", SqftHomeView.as_view(), name='sqft_homes'),
+    path("age_homes", AgeHomeView.as_view(), name='age_homes')
 ] + router.urls
