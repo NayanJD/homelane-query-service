@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'query_service.service',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,9 @@ DATA_SERVICE_URL = env.str("DATA_SERVICE_URL", default="http://localhost:8000")
 STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+REST_FRAMEWORK =    {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'query_service.service.auth.TokenAuthentication'
+    ]
+}

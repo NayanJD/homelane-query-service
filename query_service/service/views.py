@@ -2,6 +2,7 @@ from urllib import response
 from django.shortcuts import render
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from django.conf import settings
 import requests
@@ -10,6 +11,8 @@ data_service_url = settings.DATA_SERVICE_URL
 
 
 class BudgetHomeView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         minPrice = request.GET.get('minPrice', 0)
         maxPrice = request.GET.get('maxPrice', 100000000000000)
