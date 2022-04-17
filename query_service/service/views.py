@@ -14,8 +14,6 @@ class BudgetHomeView(APIView):
         minPrice = request.GET.get('minPrice', 0)
         maxPrice = request.GET.get('maxPrice', 100000000000000)
 
-        print(minPrice)
-        print(maxPrice)
         res = requests.post(data_service_url + '/query_data', json={
             "table": "home",
             "AND": [
@@ -28,6 +26,26 @@ class BudgetHomeView(APIView):
                     "column_name": "price",
                     "operator": "lte",
                     "value": maxPrice
+                }
+            ]
+        })
+
+        if res.status_code == 200:
+            return Response(res.json())
+        else:
+            return Response('error')
+
+class SqftHomeView(APIView):
+    def get(self, request):
+        minSqft = request.GET.get('minSqft', 0)
+
+        res = requests.post(data_service_url + '/query_data', json={
+            "table": "home",
+            "AND": [
+                {
+                    "column_name": "sqft_living",
+                    "operator": "gte",
+                    "value": minSqft
                 }
             ]
         })
