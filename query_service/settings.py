@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure--^bvfh@v2-(s0c4kd&thpcz(pr#a_fp(4oj8q91$tm@sun=ein
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,4 +129,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-DATA_SERVICE_URL = env.str("DATA_SERIVICE_URL", default="http://localhost:8000")
+DATA_SERVICE_URL = env.str("DATA_SERVICE_URL", default="http://localhost:8000")
+
+STATIC_URL = "/static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
